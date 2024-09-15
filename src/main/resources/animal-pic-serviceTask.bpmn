@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="bfd5b56" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.5.0" camunda:diagramRelationId="fcd76eb7-1dc2-454d-a71c-94eaead680b3">
+  <bpmn:process id="animal-pictures-id" name="animal-pic-latest" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="UserTaskForm_04jaajs">{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.5.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "bfd5b56"
+  },
+  "schemaVersion": 16,
+  "id": "Form_1do9p8t",
+  "components": [
+    {
+      "label": "Enter Animal",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_022houe",
+        "columns": null
+      },
+      "id": "Field_1000az8",
+      "key": "selectedAnimal"
+    }
+  ],
+  "type": "default"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:UserTaskForm_04jaajs" />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_0u3ohlo</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0u3ohlo" sourceRef="StartEvent_1" targetRef="Find-Picture-Task" />
+    <bpmn:serviceTask id="Find-Picture-Task" name="Find Animal Picture">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="find-selected-picture" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0u3ohlo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vurz54</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0vurz54" sourceRef="Find-Picture-Task" targetRef="Event_1ymdhaw" />
+    <bpmn:endEvent id="Event_1ymdhaw">
+      <bpmn:incoming>Flow_0vurz54</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_00gvais">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_025oiwp_di" bpmnElement="Find-Picture-Task">
+        <dc:Bounds x="240" y="78" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ymdhaw_di" bpmnElement="Event_1ymdhaw">
+        <dc:Bounds x="402" y="100" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0u3ohlo_di" bpmnElement="Flow_0u3ohlo">
+        <di:waypoint x="186" y="118" />
+        <di:waypoint x="240" y="118" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vurz54_di" bpmnElement="Flow_0vurz54">
+        <di:waypoint x="340" y="118" />
+        <di:waypoint x="402" y="118" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

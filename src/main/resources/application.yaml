@@ -1,0 +1,35 @@
+# https://docs.camunda.io/docs/apis-tools/spring-zeebe-sdk/getting-started/
+# https://docs.camunda.io/docs/apis-tools/spring-zeebe-sdk/configuration/
+
+zeebe.client:
+  mode: saas
+  cloud:
+    region: ont-1
+    clusterId: 1166c7a2-c61e-451b-909d-b90a78e20aa1
+    clientId: W99xTXyl6IzqzR0MXdJiL7LF_7LEokx0
+    clientSecret: xJEXu63DSXyFg1KuaAZ-Zk28QTyg1UABnvlB.9Y35XLa32k1_Vp3M~i9Dvin7zWN
+    authUrl: https://login.cloud.camunda.io/oauth/token
+  broker:
+    #gateway-address: https://1166c7a2-c61e-451b-909d-b90a78e20aa1.zeebe.camunda.io:443
+    grpcAddress: grpcs://1166c7a2-c61e-451b-909d-b90a78e20aa1.ont-1.zeebe.camunda.io:443
+    restAddress: https://ont-1.zeebe.camunda.io/1166c7a2-c61e-451b-909d-b90a78e20aa1
+    #gateway-address: http://127.0.0.1:26500
+  #security:
+   # plaintext: true
+debug: true
+logging:
+  level:
+    org:
+      springframework:
+        boot:
+          autoconfigure: ERROR
+spring:
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect

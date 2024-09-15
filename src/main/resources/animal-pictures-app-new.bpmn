@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="d59adc0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.6.0" camunda:diagramRelationId="6d0d795d-75a3-4eee-9538-8e6bb661aac6">
+  <bpmn:process id="animal-pictures-id" name="animal-pictures-app" isExecutable="true">
+    <bpmn:extensionElements>
+      <zeebe:userTaskForm id="UserTaskForm_3npsm6f">{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.5.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "f2d47a1"
+  },
+  "schemaVersion": 16,
+  "id": "choose-animal-1234",
+  "components": [
+    {
+      "label": "Enter Animal",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_03u1gg4",
+        "columns": null
+      },
+      "id": "Field_05asbbz",
+      "key": "selectedAnimal",
+      "validate": {
+        "required": true
+      },
+      "description": "Enter cat/dog/bear"
+    }
+  ],
+  "type": "default"
+}</zeebe:userTaskForm>
+    </bpmn:extensionElements>
+    <bpmn:serviceTask id="AnimalPictureTask" name="Find Animal Picture">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="find-selected-picture" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_01263t6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nopoio</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_14nsa7q</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_12mhnv5">
+      <bpmn:incoming>Flow_1nopoio</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1nopoio" sourceRef="AnimalPictureTask" targetRef="Event_12mhnv5" />
+    <bpmn:sequenceFlow id="Flow_14nsa7q" sourceRef="StartEvent_1" targetRef="enterAnimalTask" />
+    <bpmn:userTask id="enterAnimalTask" name="Enter Animal">
+      <bpmn:extensionElements>
+        <zeebe:formDefinition formKey="camunda-forms:bpmn:UserTaskForm_3npsm6f" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_14nsa7q</bpmn:incoming>
+      <bpmn:outgoing>Flow_01263t6</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_01263t6" sourceRef="enterAnimalTask" targetRef="AnimalPictureTask" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="animal-pictures-id">
+      <bpmndi:BPMNShape id="Activity_1qoq5tp_di" bpmnElement="AnimalPictureTask">
+        <dc:Bounds x="420" y="88" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="110" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_12mhnv5_di" bpmnElement="Event_12mhnv5">
+        <dc:Bounds x="592" y="110" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_04hcynh_di" bpmnElement="enterAnimalTask">
+        <dc:Bounds x="240" y="88" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1nopoio_di" bpmnElement="Flow_1nopoio">
+        <di:waypoint x="520" y="128" />
+        <di:waypoint x="592" y="128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14nsa7q_di" bpmnElement="Flow_14nsa7q">
+        <di:waypoint x="186" y="128" />
+        <di:waypoint x="240" y="128" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01263t6_di" bpmnElement="Flow_01263t6">
+        <di:waypoint x="340" y="128" />
+        <di:waypoint x="420" y="128" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
