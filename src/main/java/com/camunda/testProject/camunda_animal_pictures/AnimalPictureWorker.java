@@ -13,8 +13,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class AnimalPictureWorker {
@@ -27,14 +25,15 @@ public class AnimalPictureWorker {
     @Autowired
     private RestTemplate restTemplate;
 
+    // Jobworker method to get the picture and save to db
     @JobWorker(type = "find-selected-picture", timeout = 60000)
     public void findSelectedPicture(final JobClient client, final ActivatedJob job) {
         final String message_content = (String) job.getVariablesAsMap().get("selectedAnimal");
         LOG.info(message_content);
         byte[] pic = service.getApiData(message_content);
-        String encodedPic = Base64.getEncoder().encodeToString(pic);
+//        String encodedPic = Base64.getEncoder().encodeToString(pic);
 //        LOG.info("image", encodedPic);
-        PictureDetails details = pictureService.saveFile(new PictureDetails(pic));
+        PictureDetails details = pictureService.save(new PictureDetails(pic));
         LOG.info("data saved, id: ", details.getId());
 //        client.newCompleteCommand(job.getKey()).variables("{\"picture\":\""+encodedPic+"\"}")
 //                .send().join();

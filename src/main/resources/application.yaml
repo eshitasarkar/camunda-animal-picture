@@ -1,6 +1,9 @@
 # https://docs.camunda.io/docs/apis-tools/spring-zeebe-sdk/getting-started/
 # https://docs.camunda.io/docs/apis-tools/spring-zeebe-sdk/configuration/
-
+imageUrl:
+  cat: https://api.thecatapi.com/v1/images/search
+  dog: https://place.dog/300/200
+  bear: https://placebear.com/g/200/300
 zeebe.client:
   mode: saas
   cloud:
@@ -32,4 +35,6 @@ spring:
     username: sa
     password: password
   jpa:
+    hibernate:
+      #ddl-auto: update
     database-platform: org.hibernate.dialect.H2Dialect

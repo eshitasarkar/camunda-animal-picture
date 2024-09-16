@@ -13,7 +13,7 @@ public class DBPictureService {
     @Autowired
     private PictureRepository repository;
 
-    public PictureDetails saveFile(PictureDetails details){
+    public PictureDetails save(PictureDetails details){
         repository.save(details);
         return details;
     }
@@ -30,7 +30,7 @@ public class DBPictureService {
         repository.deleteById(id);
     }
 
-    public List<PictureDetails> getPictures(){
+    public List<PictureDetails> getAllPictures(){
         return (List<PictureDetails>) repository.findAll();
     }
 

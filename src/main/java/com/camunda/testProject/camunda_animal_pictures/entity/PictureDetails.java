@@ -10,7 +10,7 @@ public class PictureDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private long Id;
     @Lob
     private byte[] imageData;
 
@@ -21,7 +21,7 @@ public class PictureDetails {
         this.imageData = imageData;
     }
 
-    public PictureDetails(Long id, byte[] imageData) {
+    public PictureDetails(long id, byte[] imageData) {
         Id = id;
         this.imageData = imageData;
     }
@@ -30,7 +30,7 @@ public class PictureDetails {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         Id = id;
     }
 
